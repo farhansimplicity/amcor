@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Planning Module | Operations Job Tracker</title>
+<style>
+:root{--navy:#17324d;--blue:#1769aa;--pale:#edf4fa;--ink:#203449;--muted:#6b7d8e;--line:#dfe7ee;--bg:#f4f7fa;--green:#197957;--amber:#9a650e;--red:#ad3943}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 Arial,Helvetica,sans-serif}.shell{display:flex;min-height:100vh}.sidebar{width:255px;background:var(--navy);color:#fff;padding:25px 16px;display:flex;flex-direction:column;flex-shrink:0}.brand{display:flex;gap:12px;align-items:center;padding:0 7px}.planning-mark{width:58px;height:58px;flex:0 0 58px;border-radius:10px;background:#fff;color:var(--navy);display:grid;place-items:center;font-size:18px;font-weight:800;letter-spacing:-1px}.planning-brand strong{font-size:13px;letter-spacing:1.1px}.planning-brand small{letter-spacing:1.25px}.logo{width:58px;height:58px;flex:0 0 58px;background:#fff;border-radius:9px;display:grid;place-items:center;overflow:hidden;border:1px solid rgba(255,255,255,.22)}.logo img{display:block;width:100%;height:100%;object-fit:contain}.brand strong{display:block;font-size:12px;letter-spacing:1px}.brand small{display:block;margin-top:5px;color:#b6c7d6;font-size:10px;letter-spacing:1.4px}.section-label{font-size:10px;letter-spacing:1.6px;color:#9db3c7;margin:38px 10px 12px}.nav{display:grid;gap:7px}.nav button{width:100%;border:0;border-radius:8px;padding:12px;background:transparent;color:#d1deea;text-align:left;cursor:pointer;display:flex;align-items:center;gap:10px;font-size:12px}.nav button.active{background:#fff;color:var(--navy);font-weight:700}.nav button b{margin-left:auto;background:#2a4965;color:#fff;padding:3px 7px;border-radius:20px;font-size:10px}.nav button.active b{background:#e4f0fb;color:var(--blue)}.side-note{margin-top:auto;border-top:1px solid #34506a;padding:16px 8px 0;color:#bdcddd;font-size:11px;line-height:1.6}.main{flex:1;min-width:0;padding:28px clamp(14px,3vw,38px)}.topbar{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:22px}.eyebrow{font-size:10px;letter-spacing:1.5px;font-weight:700;color:#73869a}.topbar h1{font-size:27px;margin:5px 0;color:#172f46}.subtitle{margin:0;color:var(--muted);font-size:12px}.btn{border-radius:7px;padding:10px 13px;border:1px solid #d5e0e8;background:#fff;color:#40576b;font-size:12px;font-weight:700;cursor:pointer}.btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}.btn:hover{filter:brightness(.97)}.stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:10px 0 14px}.stat{padding:10px}.stat strong{font-size:20px;margin-top:4px}.stat{background:#fff;border:1px solid var(--line);border-radius:10px;padding:15px}.stat small{display:block;color:var(--muted);font-size:11px}.stat strong{display:block;font-size:24px;margin-top:7px}.stat .stat-subcount{display:inline;font-size:15px;color:#197957;font-weight:700;margin-left:3px}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}.search{height:39px;width:min(340px,100%);border:1px solid var(--line);background:#fff;border-radius:7px;padding:0 12px;font:inherit;font-size:12px}.dates{display:flex;align-items:center;gap:7px;flex-wrap:wrap;color:var(--muted);font-size:11px}.dates input{border:1px solid var(--line);background:#fff;border-radius:6px;padding:8px;font:inherit;color:var(--ink)}.card{background:#fff;border:1px solid var(--line);border-radius:11px;overflow:hidden}.card-head{padding:17px 18px;display:flex;justify-content:space-between;align-items:center;gap:10px}.card-head h2{font-size:14px;margin:0 0 4px}.card-head p{margin:0;color:var(--muted);font-size:11px}.count{white-space:nowrap;border-radius:20px;background:#edf2f6;padding:6px 10px;font-size:10px;font-weight:700;color:#4f6579}.table-wrap{overflow:auto}.jobs{border-collapse:separate;border-spacing:0;min-width:1600px;width:100%;font-size:11px}.jobs th{position:sticky;top:0;background:#f7f9fb;color:#5d7184;text-align:left;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 9px;font-size:10px;white-space:nowrap}.jobs th.group{text-align:center;color:white;border:0;font-size:9px;letter-spacing:1px}.jobs th.planner{background:#315a7c}.jobs th.prepress{background:#7660a5}.jobs th.purchase{background:#a16d25}.jobs th.production{background:#28786d}.jobs th.dispatch{background:#536a7e}.jobs td{padding:6px 8px;border-bottom:1px solid #edf1f5;vertical-align:middle;white-space:nowrap;color:#40566a}.jobs tr:hover td{background:#f9fbfd}.customer{font-weight:700;color:#20384e!important}.remark-input{width:220px;min-width:220px;min-height:34px;padding:7px 8px;border:1px solid #d6e1e9;border-radius:5px;font:inherit;color:#203449;background:#fff}.remark-input:focus{outline:2px solid #d8eaf8;border-color:var(--blue)}.qty-input{width:88px;padding:6px;border:1px solid #d6e1e9;border-radius:5px;font:inherit;font-weight:700;color:#20384e}.qty-input:focus{outline:2px solid #d8eaf8;border-color:var(--blue)}.check{width:15px;height:15px;accent-color:var(--green);vertical-align:middle;cursor:pointer}.status-toggle{min-width:78px;border:1px solid #f0ddb4;background:#fff3dd;color:var(--ink);border-radius:6px;padding:6px 9px;font:inherit;font-size:10px;font-weight:700;cursor:pointer}.status-toggle.done{border-color:#bfe5d3;background:#e5f6ee;color:#203449}.status-toggle:hover{filter:brightness(.97)}.status-toggle:focus-visible{outline:2px solid var(--blue);outline-offset:2px}.badge{display:inline-block;padding:4px 7px;border-radius:20px;font-size:10px;font-weight:700}.badge.pending{background:#fff3dd;color:var(--amber)}.badge.done{background:#e5f6ee;color:var(--green)}.actions{display:flex;gap:5px}.mini{border:1px solid #d8e2e9;background:#fff;border-radius:5px;padding:5px 7px;font-size:10px;cursor:pointer;color:#455b70}.mini.delete{color:var(--red)}.empty{text-align:center;padding:45px 20px;color:var(--muted)}.footer{padding:12px 18px;border-top:1px solid var(--line);font-size:10px;color:var(--muted);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}.hidden{display:none!important}.modal-bg{position:fixed;inset:0;background:#10263bc9;display:grid;place-items:center;padding:16px;z-index:5;overflow:auto}.modal{width:min(780px,100%);max-height:calc(100vh - 32px);overflow:auto;background:#fff;border-radius:12px;padding:23px;box-shadow:0 20px 60px #07182740}.modal-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px}.modal h2{font-size:21px;margin:5px 0}.close{border:0;background:#eef2f5;border-radius:6px;width:32px;height:32px;font-size:22px;cursor:pointer}.modal h3{font-size:12px;color:#31516d;border-bottom:1px solid var(--line);padding-bottom:8px;margin:20px 0 12px}.form-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.form-grid label{display:flex;flex-direction:column;gap:5px;font-size:11px;font-weight:700;color:#53687a}.form-grid input:not([type=checkbox]){width:100%;padding:9px;border:1px solid #d8e2e9;border-radius:6px;font:inherit;font-weight:400;color:#40566a;background:#fff}.form-grid input::placeholder{color:#7b8b99;opacity:1}.form-grid input[type=date]{color:#40566a;color-scheme:light}.form-grid .check-label{flex-direction:row;align-items:center;gap:7px;border:1px solid #e5ebf0;background:#f8fafb;padding:10px;border-radius:6px;min-height:37px}.form-grid .check-label input{accent-color:var(--green)}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:22px}.notice{font-size:11px;color:#735b2b;background:#fff8e9;border:1px solid #f0e1be;padding:11px;border-radius:7px;margin-top:15px}.toast{position:fixed;right:18px;bottom:18px;background:#17324d;color:#fff;border-radius:8px;padding:12px 16px;box-shadow:0 8px 25px #0002;z-index:20;font-size:12px}.toast.hidden{display:none}@media(max-width:850px){.shell{display:block}.sidebar{width:100%;padding:14px}.brand{padding:0}.section-label,.side-note{display:none}.nav{display:flex;overflow:auto;margin-top:14px}.nav button{white-space:nowrap;width:auto;flex-shrink:0}.main{padding:20px 12px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.topbar h1{font-size:23px}.form-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:480px){.topbar{align-items:flex-start;flex-direction:column}.form-grid{grid-template-columns:1fr}.dates{width:100%}.dates input{min-width:0;width:38%}}
+
+.topbar-actions{display:flex;align-items:center;justify-content:flex-end;gap:14px;flex-shrink:0}
+.topbar-buttons{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.topbar-logo{display:block;width:40px;height:40px;object-fit:contain;flex:0 0 40px;background:transparent;border-radius:0;align-self:flex-start}
+@media(max-width:850px){.topbar-actions{width:100%;justify-content:space-between}.topbar-logo{width:40px;height:40px;flex-basis:40px}}
+@media(max-width:480px){.topbar-actions{align-items:flex-start}.topbar-buttons{flex:1}.topbar-logo{width:27px;height:27px;flex-basis:27px}}
+
+/* FIX: keep the six Planner Team columns frozen while the work-stage columns scroll */
+.table-wrap{
+  display:block;
+  width:100%;
+  max-width:100%;
+  overflow-x:auto;
+  overflow-y:visible;
+  position:relative;
+  isolation:isolate;
+  overscroll-behavior-x:contain;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;
+}
+.jobs{
+  width:max-content;
+  min-width:1800px;
+  table-layout:fixed;
+  border-collapse:separate;
+  border-spacing:0;
+}
+.jobs th,.jobs td{box-sizing:border-box;}
+/* fixed widths and exact cumulative offsets for the six Planner Team columns */
+.jobs th:nth-child(1),.jobs td:nth-child(1){width:105px;min-width:105px;max-width:105px;}
+.jobs th:nth-child(2),.jobs td:nth-child(2){width:145px;min-width:145px;max-width:145px;}
+.jobs th:nth-child(3),.jobs td:nth-child(3){width:145px;min-width:145px;max-width:145px;}
+.jobs th:nth-child(4),.jobs td:nth-child(4){width:100px;min-width:100px;max-width:100px;}
+.jobs th:nth-child(5),.jobs td:nth-child(5){width:95px;min-width:95px;max-width:95px;}
+.jobs th:nth-child(6),.jobs td:nth-child(6){width:150px;min-width:150px;max-width:150px;}
+/* sticky body cells */
+.jobs tbody td:nth-child(1){position:sticky;left:0;z-index:4;background:#fff;}
+.jobs tbody td:nth-child(2){position:sticky;left:105px;z-index:4;background:#fff;}
+.jobs tbody td:nth-child(3){position:sticky;left:250px;z-index:4;background:#fff;}
+.jobs tbody td:nth-child(4){position:sticky;left:395px;z-index:4;background:#fff;}
+.jobs tbody td:nth-child(5){position:sticky;left:495px;z-index:4;background:#fff;}
+.jobs tbody td:nth-child(6){position:sticky;left:590px;z-index:4;background:#fff;box-shadow:5px 0 7px -5px #17324d66;}
+/* sticky column labels; group row remains above the column-label row */
+.jobs thead tr:nth-child(2) th:nth-child(-n+6){position:sticky;top:0;z-index:9;background:#f7f9fb;}
+.jobs thead tr:nth-child(2) th:nth-child(1){left:0;}
+.jobs thead tr:nth-child(2) th:nth-child(2){left:105px;}
+.jobs thead tr:nth-child(2) th:nth-child(3){left:250px;}
+.jobs thead tr:nth-child(2) th:nth-child(4){left:395px;}
+.jobs thead tr:nth-child(2) th:nth-child(5){left:495px;}
+.jobs thead tr:nth-child(2) th:nth-child(6){left:590px;box-shadow:5px 0 7px -5px #17324d66;}
+.jobs thead tr:first-child th.planner{position:sticky;left:0;z-index:11;width:740px;min-width:740px;max-width:740px;background:#315a7c;color:#fff;}
+.jobs tbody tr:hover td:nth-child(-n+6){background:#f9fbfd;}
+.jobs th:last-child,.jobs td:last-child{min-width:250px;width:250px;}
+.remark-input{width:220px;min-width:220px;box-sizing:border-box;}
+@media(max-width:850px){
+  .table-wrap{overflow-x:auto;}
+  .jobs{min-width:1800px;}
+  /* keep Planner Team frozen on smaller screens too */
+}
+.category-panel{background:#fff;border:1px solid var(--line);border-radius:9px;padding:10px 12px;margin:12px 0}.category-head{display:flex;align-items:center;justify-content:space-between;font-size:12px}.category-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.category-chip{border:1px solid #d9e3eb;background:#f7fafc;border-radius:20px;padding:6px 10px;font-size:11px;cursor:pointer}.category-chip.selected{background:#e4f0fb;color:#1769aa;border-color:#9fc7e9}@media(max-width:850px){.stats{grid-template-columns:repeat(2,minmax(0,1fr)}}
+</style><style>
+.bulk-area{width:100%;min-height:145px;resize:vertical;border:1px solid #d8e2e9;border-radius:7px;padding:12px;font:12px/1.6 monospace}
+.bulk-help{font-size:12px;color:#53687a;margin:9px 0}
+.bulk-preview{max-height:240px;overflow:auto;border:1px solid #dfe7ee;border-radius:7px;margin-top:12px}
+.bulk-preview table{border-collapse:collapse;width:100%;font-size:11px;white-space:nowrap}
+.bulk-preview th,.bulk-preview td{padding:7px;border-bottom:1px solid #e6edf3;text-align:left}
+.bulk-preview th{background:#f7f9fb;position:sticky;top:0}
+.bulk-error{color:#ad3943;font-weight:bold}.bulk-good{color:#197957;font-weight:bold}
+
+/* polished employee sign-in dialog */
+.signin-modal{width:min(430px,100%);max-height:calc(100vh - 32px);position:relative;padding:34px 32px 27px;border:1px solid #e8eef4;border-radius:18px;background:linear-gradient(180deg,#fff 0%,#fbfdff 100%);box-shadow:0 28px 90px #07182755}
+.signin-brand{text-align:center;padding:8px 0 25px}.signin-mark{width:120px;height:104px;margin:0 auto 12px;display:block;object-fit:contain;border-radius:8px}.signin-brand .eyebrow{color:#ea580c;letter-spacing:2px}.signin-brand h2{font-size:26px;color:#17324d;margin:8px 0}.signin-brand .subtitle{font-size:13px}.signin-close{position:absolute;right:16px;top:16px}.signin-fields{display:flex;flex-direction:column;gap:8px}.signin-fields label{font-size:12px;font-weight:700;color:#40566a;margin-top:8px}.signin-fields input{width:100%;height:46px;padding:0 13px;border:1px solid #dce5ed;border-radius:9px;background:#fff;font:14px Arial;color:#203449;transition:border .15s,box-shadow .15s}.signin-fields input:focus{outline:none;border-color:#f97316;box-shadow:0 0 0 3px #f973161a}.signin-fields input::placeholder{color:#9aa8b5}.signin-actions{margin-top:24px;display:grid;grid-template-columns:105px 1fr}.signin-actions .btn{height:44px;border-radius:9px;font-size:13px}.signin-actions .btn.primary{background:linear-gradient(135deg,#f97316,#ea580c);border-color:#ea580c;box-shadow:0 7px 16px #ea580c25}.signin-status{text-align:center;min-height:17px;margin:17px 0 0;color:#6b7d8e;font-size:11px;overflow-wrap:anywhere}.signin-foot{text-align:center;font-size:10px;color:#9aa8b5;margin:14px 0 0}.signin-modal #cloudSignOut{color:#607386}
+.category-panel{background:#fff;border:1px solid var(--line);border-radius:9px;padding:10px 12px;margin:12px 0}.category-head{display:flex;align-items:center;justify-content:space-between;font-size:12px}.category-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.category-chip{border:1px solid #d9e3eb;background:#f7fafc;border-radius:20px;padding:6px 10px;font-size:11px;cursor:pointer}.category-chip.selected{background:#e4f0fb;color:#1769aa;border-color:#9fc7e9}@media(max-width:850px){.stats{grid-template-columns:repeat(2,minmax(0,1fr)}}
+
+/* Reliable frozen Planner Team columns: checkbox + booking through planned dispatch */
+.table-wrap{display:block;width:100%;max-width:100%;overflow-x:auto;overflow-y:visible;position:relative;isolation:isolate;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.jobs{width:max-content;min-width:2050px;table-layout:fixed;border-collapse:separate;border-spacing:0}
+.jobs th,.jobs td{box-sizing:border-box}
+/* column widths: select 38, booking 100, SO 78, customer 165, product 185, item 82, category 110, qty 78, dispatch date 120 */
+.jobs th:nth-child(1),.jobs td:nth-child(1){width:38px;min-width:38px;max-width:38px}
+.jobs th:nth-child(2),.jobs td:nth-child(2){width:100px;min-width:100px;max-width:100px}
+.jobs th:nth-child(3),.jobs td:nth-child(3){width:78px;min-width:78px;max-width:78px}
+.jobs th:nth-child(4),.jobs td:nth-child(4){width:165px;min-width:165px;max-width:165px}
+.jobs th:nth-child(5),.jobs td:nth-child(5){width:185px;min-width:185px;max-width:185px}
+.jobs th:nth-child(6),.jobs td:nth-child(6){width:82px;min-width:82px;max-width:82px}
+.jobs th:nth-child(7),.jobs td:nth-child(7){width:110px;min-width:110px;max-width:110px}
+.jobs th:nth-child(8),.jobs td:nth-child(8){width:78px;min-width:78px;max-width:78px}
+.jobs th:nth-child(9),.jobs td:nth-child(9){width:120px;min-width:120px;max-width:120px}
+.jobs tbody td:nth-child(-n+9){position:sticky;z-index:4;background:#fff}
+.jobs tbody td:nth-child(1){left:0}
+.jobs tbody td:nth-child(2){left:38px}
+.jobs tbody td:nth-child(3){left:138px}
+.jobs tbody td:nth-child(4){left:216px}
+.jobs tbody td:nth-child(5){left:381px}
+.jobs tbody td:nth-child(6){left:566px}
+.jobs tbody td:nth-child(7){left:648px}
+.jobs tbody td:nth-child(8){left:758px}
+.jobs tbody td:nth-child(9){left:836px;box-shadow:5px 0 7px -5px #17324d66}
+.jobs thead tr:first-child th{position:sticky;top:0;z-index:10}
+.jobs thead tr:first-child th:first-child{left:0;z-index:13;width:38px;min-width:38px;max-width:38px;background:#f7f9fb}
+.jobs thead tr:first-child th.planner{left:38px;z-index:12;width:918px;min-width:918px;max-width:918px;background:#315a7c;color:#fff}
+.jobs thead tr:nth-child(2) th{position:sticky;top:34px;z-index:9;background:#f7f9fb}
+.jobs thead tr:nth-child(2) th:nth-child(1){left:38px}
+.jobs thead tr:nth-child(2) th:nth-child(2){left:138px}
+.jobs thead tr:nth-child(2) th:nth-child(3){left:216px}
+.jobs thead tr:nth-child(2) th:nth-child(4){left:381px}
+.jobs thead tr:nth-child(2) th:nth-child(5){left:566px}
+.jobs thead tr:nth-child(2) th:nth-child(6){left:648px}
+.jobs thead tr:nth-child(2) th:nth-child(7){left:758px}
+.jobs thead tr:nth-child(2) th:nth-child(8){left:836px;box-shadow:5px 0 7px -5px #17324d66}
+.jobs tbody tr:hover td:nth-child(-n+9){background:#f9fbfd}
+.jobs td.customer,.jobs td.product-cell{cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.jobs td.customer:hover,.jobs td.product-cell:hover{color:var(--blue)!important;text-decoration:underline}
+.select-toolbar{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:0 0 12px;padding:9px 12px;background:#fff;border:1px solid var(--line);border-radius:8px;font-size:11px;color:var(--muted)}
+.select-toolbar label{display:flex;align-items:center;gap:7px;font-weight:700;color:#40566a}
+.select-toolbar .btn{padding:7px 10px}
+.select-toolbar .btn.danger{background:#ad3943;border-color:#ad3943;color:#fff;font-weight:700}
+.select-toolbar .btn.danger:disabled{opacity:.48;cursor:not-allowed}
+.row-select,.select-all{width:15px;height:15px;accent-color:var(--blue);cursor:pointer}
+.quick-modal{width:min(900px,100%);padding:24px 28px}
+.quick-modal .form-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.quick-modal .modal-actions{margin-top:18px}
+.quick-modal .eyebrow{color:#315a7c}
+@media(max-width:650px){.quick-modal .form-grid{grid-template-columns:1fr}.quick-modal{padding:20px}}
+</style><style>
+
+/* Revised planner freeze: keep selection + all Planner Team columns visible */
+.table-wrap{overflow:auto!important;position:relative;isolation:isolate;max-width:100%;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+.jobs{width:max-content!important;min-width:100%!important;table-layout:fixed!important;border-collapse:separate!important;border-spacing:0!important}
+.jobs th,.jobs td{box-sizing:border-box}
+.jobs th:nth-child(1),.jobs td:nth-child(1){width:40px!important;min-width:40px!important;max-width:40px!important}
+.jobs th:nth-child(2),.jobs td:nth-child(2){width:90px!important;min-width:90px!important;max-width:90px!important}
+.jobs th:nth-child(3),.jobs td:nth-child(3){width:76px!important;min-width:76px!important;max-width:76px!important}
+.jobs th:nth-child(4),.jobs td:nth-child(4){width:150px!important;min-width:150px!important;max-width:150px!important}
+.jobs th:nth-child(5),.jobs td:nth-child(5){width:170px!important;min-width:170px!important;max-width:170px!important}
+.jobs th:nth-child(6),.jobs td:nth-child(6){width:82px!important;min-width:82px!important;max-width:82px!important}
+.jobs th:nth-child(7),.jobs td:nth-child(7){width:100px!important;min-width:100px!important;max-width:100px!important}
+.jobs th:nth-child(8),.jobs td:nth-child(8){width:70px!important;min-width:70px!important;max-width:70px!important}
+.jobs th:nth-child(9),.jobs td:nth-child(9){width:115px!important;min-width:115px!important;max-width:115px!important}
+/* Body frozen columns: exact cumulative offsets */
+.jobs tbody td:nth-child(1){position:sticky!important;left:0!important;z-index:8!important;background:#fff}
+.jobs tbody td:nth-child(2){position:sticky!important;left:40px!important;z-index:8!important;background:#fff}
+.jobs tbody td:nth-child(3){position:sticky!important;left:130px!important;z-index:8!important;background:#fff}
+.jobs tbody td:nth-child(4){position:sticky!important;left:206px!important;z-index:8!important;background:#fff}
+.jobs tbody td:nth-child(5){position:sticky!important;left:356px!important;z-index:8!important;background:#fff}
+.jobs tbody td:nth-child(6){position:sticky!important;left:526px!important;z-index:8!important;background:#fff}
+.jobs tbody td:nth-child(7){position:sticky!important;left:608px!important;z-index:8!important;background:#fff}
+.jobs tbody td:nth-child(8){position:sticky!important;left:708px!important;z-index:8!important;background:#fff}
+.jobs tbody td:nth-child(9){position:sticky!important;left:778px!important;z-index:8!important;background:#fff;box-shadow:5px 0 7px -5px #17324d88}
+/* Two-level sticky header */
+.jobs thead tr:first-child th{position:sticky!important;top:0!important;z-index:15!important}
+.jobs thead tr:first-child th:first-child{left:0!important;z-index:18!important;background:#f7f9fb}
+.jobs thead tr:first-child th.planner{left:40px!important;z-index:17!important;width:853px!important;min-width:853px!important;max-width:853px!important}
+.jobs thead tr:nth-child(2) th{position:sticky!important;top:34px!important;z-index:14!important;background:#f7f9fb}
+.jobs thead tr:nth-child(2) th:nth-child(1){left:40px!important}
+.jobs thead tr:nth-child(2) th:nth-child(2){left:130px!important}
+.jobs thead tr:nth-child(2) th:nth-child(3){left:206px!important}
+.jobs thead tr:nth-child(2) th:nth-child(4){left:356px!important}
+.jobs thead tr:nth-child(2) th:nth-child(5){left:526px!important}
+.jobs thead tr:nth-child(2) th:nth-child(6){left:608px!important}
+.jobs thead tr:nth-child(2) th:nth-child(7){left:708px!important}
+.jobs thead tr:nth-child(2) th:nth-child(8){left:778px!important;box-shadow:5px 0 7px -5px #17324d88}
+.jobs tbody tr:hover td:nth-child(-n+9){background:#f9fbfd}
+.jobs tbody td:nth-child(9){box-shadow:5px 0 7px -5px #17324d88}
+.select-toolbar{gap:10px}
+#deleteSelectedBtn{display:inline-flex!important;align-items:center;justify-content:center;min-height:34px;padding:8px 14px!important;font-weight:800!important;white-space:nowrap}
+#deleteSelectedBtn:disabled{opacity:.55}
+.quick-modal{width:min(860px,calc(100vw - 28px))!important;max-height:calc(100vh - 32px);overflow:auto}
+.quick-modal .form-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:650px){.quick-modal .form-grid{grid-template-columns:1fr}}
+
+
+.jobs thead tr:nth-child(2) th:nth-child(1){width:90px!important;min-width:90px!important;max-width:90px!important}
+.jobs thead tr:nth-child(2) th:nth-child(2){width:76px!important;min-width:76px!important;max-width:76px!important}
+.jobs thead tr:nth-child(2) th:nth-child(3){width:150px!important;min-width:150px!important;max-width:150px!important}
+.jobs thead tr:nth-child(2) th:nth-child(4){width:170px!important;min-width:170px!important;max-width:170px!important}
+.jobs thead tr:nth-child(2) th:nth-child(5){width:82px!important;min-width:82px!important;max-width:82px!important}
+.jobs thead tr:nth-child(2) th:nth-child(6){width:100px!important;min-width:100px!important;max-width:100px!important}
+.jobs thead tr:nth-child(2) th:nth-child(7){width:70px!important;min-width:70px!important;max-width:70px!important}
+.jobs thead tr:nth-child(2) th:nth-child(8){width:115px!important;min-width:115px!important;max-width:115px!important}
+
+</style>
+<style id="planner-header-layer-fix">
+/* Keep Planner Team frozen headers above horizontally scrolling stage headers.
+   The Cylinder Ready / other work-stage headers must never paint over the
+   frozen Planner Team columns when the table is scrolled to the right. */
+.jobs thead tr:first-child th {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 5 !important;
+}
+.jobs thead tr:first-child th:first-child {
+  left: 0 !important;
+  z-index: 40 !important;
+  background: #f7f9fb !important;
+}
+.jobs thead tr:first-child th.planner {
+  left: 40px !important;
+  z-index: 39 !important;
+  background: #315a7c !important;
+  background-clip: padding-box;
+}
+.jobs thead tr:nth-child(2) th {
+  position: sticky !important;
+  top: 34px !important;
+  z-index: 6 !important;
+  background: #f7f9fb !important;
+}
+/* The eight column labels under Planner Team (Booking through Planned Dispatch). */
+.jobs thead tr:nth-child(2) th:nth-child(-n+8) {
+  z-index: 38 !important;
+}
+.jobs thead tr:nth-child(2) th:nth-child(1) { left: 40px !important; }
+.jobs thead tr:nth-child(2) th:nth-child(2) { left: 130px !important; }
+.jobs thead tr:nth-child(2) th:nth-child(3) { left: 206px !important; }
+.jobs thead tr:nth-child(2) th:nth-child(4) { left: 356px !important; }
+.jobs thead tr:nth-child(2) th:nth-child(5) { left: 526px !important; }
+.jobs thead tr:nth-child(2) th:nth-child(6) { left: 608px !important; }
+.jobs thead tr:nth-child(2) th:nth-child(7) { left: 708px !important; }
+.jobs thead tr:nth-child(2) th:nth-child(8) {
+  left: 778px !important;
+  z-index: 38 !important;
+  box-shadow: 5px 0 7px -5px #17324d88;
+}
+/* Work-stage headers remain below the frozen Planner Team header layers. */
+.jobs thead tr:nth-child(2) th:nth-child(n+9) { z-index: 6 !important; }
+</style>
+</head>
+<body><div class="shell"><aside class="sidebar"><div class="brand planning-brand"><div class="planning-mark">PM</div><div><strong>PLANNING MODULE</strong><small>OPERATIONS WORKSPACE</small></div></div><div class="section-label">JOB WORKSPACE</div><nav class="nav" aria-label="Job views"><button class="active" data-view="all">▦ All jobs <b id="allCount">0</b></button><button data-view="pending">◷ Pending jobs <b id="pendingCount">0</b></button><button data-view="completed">✓ Completed jobs <b id="completedCount">0</b></button><button data-view="dueToday">◴ Pending dispatches up to today <b id="dueCount">0</b></button><button data-view="slittingCompleted">✓ Slitting Completed <b id="slittingCount">0</b></button></nav></aside>
+<main class="main"><header class="topbar"><div><div class="eyebrow">OPERATIONS MANAGEMENT · PUNE</div><h1 id="pageTitle">All jobs</h1><p class="subtitle">Production progress, dispatch planning and job control.</p></div><div class="topbar-actions"><div class="topbar-buttons"><button class="btn" id="cloudBtn">☁ Cloud sync / Sign in</button><button class="btn" id="bulkBtn">▦ Paste / Import Excel</button><button class="btn primary" id="addBtn">＋ Add new job</button></div></div></header>
+<div class="toolbar"><input class="search" id="search" placeholder="Search customer, product or item code…" aria-label="Search jobs"><div class="dates"><strong>Planned dispatch:</strong><input type="date" id="fromDate" aria-label="From date"><span>to</span><input type="date" id="toDate" aria-label="To date"><button class="btn" id="clearDates">Clear dates</button></div></div>
+<div class="select-toolbar"><label><input class="select-all" type="checkbox" id="selectAllVisible"> Select all filtered jobs</label><span id="selectedCount">0 selected</span><button class="btn" id="clearSelectionBtn" type="button">Clear selection</button><button class="btn danger" id="deleteSelectedBtn" type="button" disabled>Delete selected jobs (0)</button><span>Selection applies to the current search, date and category filters.</span></div>
+<section class="category-panel"><div class="category-head"><strong>Product Categories</strong><button class="btn" id="addCategoryBtn">+ Add Categories</button></div><div id="categoryChips" class="category-chips"></div></section>
+<section class="stats"><div class="stat"><small>Total jobs</small><strong id="totalStat">0</strong></div><div class="stat"><small>Slitting Ready</small><strong id="pendingJobsStat">0</strong></div><div class="stat"><small>Pending dispatch</small><strong id="pendingStat">0</strong></div><div class="stat"><small>Dispatch completed</small><strong id="doneStat">0</strong></div><div class="stat"><small>Pending dispatches till date</small><strong id="rangeStat">0 <span id="rangeSlittingReady" class="stat-subcount" title="Slitting Ready jobs included in this pending-dispatch count">(0 Slitting Ready)</span></strong></div></section>
+<section class="card" id="jobsCard"><div class="card-head"><div><h2 id="tableTitle">Job register</h2><p id="tableDesc">Update team progress and edit quantities directly in the register.</p></div><span class="count" id="resultCount">0 jobs</span></div><div class="table-wrap" id="tableWrap"><table class="jobs"><thead><tr><th rowspan="2"><input class="select-all" type="checkbox" id="selectAllHeader" aria-label="Select all filtered jobs"></th><th class="group planner" colspan="8">PLANNER TEAM</th><th class="group prepress">PRE-PRESS</th><th class="group purchase">PURCHASE</th><th class="group production" colspan="5">PRODUCTION TEAM</th><th class="group dispatch" colspan="3">DISPATCH TEAM</th><th rowspan="2">Actions</th><th rowspan="2">Remark</th></tr><tr><th>Booking date</th><th>SO Number</th><th>Customer name</th><th>Product name</th><th>Item code</th><th>Job Category</th><th>Planned qty</th><th>Planned dispatch date</th><th>Cylinder ready</th><th>RM ready</th><th>Print completed</th><th>Lamination pass 1</th><th>Lamination pass 2</th><th>Slitting</th><th>Slitting qty</th><th>Dispatch done</th><th>Dispatch qty</th><th>Actual dispatch date</th></tr></thead><tbody id="jobsBody"></tbody></table></div><div class="empty hidden" id="empty">No jobs found. Add a job or change the search and date filters.</div><div class="footer"><span id="footerText">Showing 0 jobs</span><span>Quantity fields save automatically. Cloud sharing requires an active Supabase sign-in.</span></div></section></main></div>
+<div class="modal-bg hidden" id="modalBg"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-head"><div><div class="eyebrow">JOB REGISTER</div><h2 id="modalTitle">Add new job</h2></div><button class="close" id="closeModal" aria-label="Close">×</button></div><form id="jobForm"><input type="hidden" id="jobId"><h3>Planner team</h3><div class="form-grid"><label>Booking date<input id="bookingDate" type="date" required></label><label>SO Number<input id="soNumber" placeholder="Enter SO number"></label><label>Customer name<input id="customerName" required placeholder="Enter customer name"></label><label>Brand<select id="brand" style="width:100%;padding:9px;border:1px solid #d8e2e9;border-radius:6px"></select></label><label>Job category<input id="category" list="categoryOptions" placeholder="e.g. Cipla Limited"><datalist id="categoryOptions"></datalist></label><label>Product name<input id="productName" required placeholder="Enter product name"></label><label>Item code<input id="itemCode" required placeholder="Enter item code"></label><label>Planned quantity<input id="plannedQty" type="number" min="0" step="any" required placeholder="0"></label><label>Planned dispatch date<input id="plannedDate" type="date" required></label></div><h3>Team progress</h3><div class="form-grid"><label class="check-label"><input id="cylinderReady" type="checkbox"> Cylinder ready</label><label class="check-label"><input id="rmReady" type="checkbox"> RM ready</label><label class="check-label"><input id="printDone" type="checkbox"> Print completed</label><label class="check-label"><input id="lam1Done" type="checkbox"> Lamination pass 1</label><label class="check-label"><input id="lam2Done" type="checkbox"> Lamination pass 2</label><label class="check-label"><input id="slittingDone" type="checkbox"> Slitting completed</label><label>Slitting quantity<input id="slittingQty" type="number" min="0" step="any" placeholder="0"></label><label class="check-label"><input id="dispatchDone" type="checkbox"> Dispatch completed</label><label>Dispatch quantity<input id="dispatchQty" type="number" min="0" step="any" placeholder="0"></label><label>Actual dispatch date<input id="actualDate" type="date"></label><label style="grid-column:1/-1">Remark / changes<input id="remark" type="text" maxlength="500" placeholder="Write any changes or notes for this job"></label></div><div class="notice">After saving, you can still edit slitting and dispatch quantities directly in the job register or through Edit.</div><div class="modal-actions"><button class="btn" type="button" id="cancelBtn">Cancel</button><button class="btn primary" type="submit">Save job</button></div></form></section></div><div class="modal-bg hidden" id="plannerQuickBg"><section class="modal quick-modal" role="dialog" aria-modal="true" aria-labelledby="plannerQuickTitle"><div class="modal-head"><div><div class="eyebrow">JOB REGISTER</div><h2 id="plannerQuickTitle">Planner team details</h2></div><button class="close" id="plannerQuickClose" aria-label="Close">×</button></div><form id="plannerQuickForm"><input type="hidden" id="quickJobId"><h3>Planner team</h3><div class="form-grid"><label>Booking date<input id="quickBookingDate" type="date" required></label><label>SO Number<input id="quickSoNumber" placeholder="Enter SO number"></label><label>Customer name<input id="quickCustomerName" required placeholder="Enter customer name"></label><label>Job category<input id="quickCategory" placeholder="Enter job category"></label><label>Product name<input id="quickProductName" required placeholder="Enter product name"></label><label>Item code<input id="quickItemCode" required placeholder="Enter item code"></label><label>Planned quantity<input id="quickPlannedQty" type="number" min="0" step="any" required></label><label>Planned dispatch date<input id="quickPlannedDate" type="date" required></label></div><div class="modal-actions"><button class="btn" type="button" id="plannerQuickCancel">Cancel</button><button class="btn primary" type="submit">Save planner details</button></div></form></section></div><div class="modal-bg hidden" id="cloudModal"><section class="modal signin-modal" role="dialog" aria-modal="true" aria-labelledby="cloudTitle"><div class="signin-brand"><h2 id="cloudTitle">Welcome back</h2><p class="subtitle">Sign in to access the shared job tracker.</p></div><button class="close signin-close" id="cloudClose" aria-label="Close">×</button><form id="cloudForm"><div class="signin-fields"><label for="sbEmail">Employee email</label><input id="sbEmail" type="email" autocomplete="username" placeholder="name@company.com" required><label for="sbPassword">Password</label><input id="sbPassword" type="password" autocomplete="current-password" placeholder="Enter your password" required></div><div class="modal-actions signin-actions"><button class="btn" type="button" id="cloudSignOut">Sign out</button><button class="btn primary" type="submit" id="cloudConnect">Sign in <span aria-hidden="true">→</span></button></div></form><p id="cloudStatus" class="signin-status" role="status">Checking cloud connection…</p><p class="signin-foot">Authorized employees only · Secure company access</p></section></div><div class="modal-bg hidden" id="bulkModal"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="bulkTitle">
+<div class="modal-head"><div><div class="eyebrow">PLANNER TEAM · BULK ENTRY</div><h2 id="bulkTitle">Paste / Import Excel jobs</h2></div><button class="close" id="bulkClose" aria-label="Close">×</button></div>
+<p class="bulk-help">Copy rows from Excel in this order (eight columns): Booking date, SO Number, Customer name, Product name, Item code, Job Category, Planned qty, Planned dispatch date. A header row is optional. Legacy six-column rows are also accepted. Existing jobs will not be replaced.</p>
+<div class="bulk-preview"><table><thead><tr><th>Booking date</th><th>SO Number</th><th>Customer name</th><th>Product name</th><th>Item code</th><th>Job Category</th><th>Planned qty</th><th>Planned dispatch date</th></tr></thead></table></div>
+<p class="bulk-help">Dates accepted: DD/MM/YYYY, YYYY-MM-DD or Excel date serial. For CSV, export from Excel as CSV UTF-8.</p>
+<textarea class="bulk-area" id="bulkText" placeholder="Paste eight Excel columns and multiple rows here (Ctrl+V / Cmd+V)"></textarea>
+<div class="modal-actions" style="justify-content:space-between;align-items:center;flex-wrap:wrap"><label class="btn" style="display:inline-block">Upload CSV<input id="bulkFile" type="file" accept=".csv,text/csv,text/plain" class="hidden"></label><div><button class="btn" id="bulkPreviewBtn" type="button">Preview rows</button> <button class="btn primary" id="bulkSaveBtn" type="button" disabled>Import valid rows</button></div></div>
+<div id="bulkFeedback" class="bulk-help" role="status">Paste rows or upload a CSV to begin.</div><div id="bulkPreview" class="bulk-preview hidden"></div>
+</section></div><div id="toast" class="toast hidden" role="status"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(function(){'use strict';
+const STORAGE_KEY='amcor_pune_jobs_v2';
+const fields=['bookingDate','soNumber','customerName','category','productName','itemCode','plannedQty','plannedDate','cylinderReady','rmReady','printDone','lam1Done','lam2Done','slittingDone','slittingQty','dispatchDone','dispatchQty','actualDate','remark'];
+const labels={all:['All jobs','All jobs in the register.'],pending:['Pending jobs','Jobs with outstanding work or dispatch.'],completed:['Completed jobs','Jobs marked Dispatch Completed.'],dueToday:['Pending dispatches up to today','Pending dispatches planned for today or an earlier date, with Slitting Completed marked.'],slittingCompleted:['Slitting Completed','Jobs marked Slitting Completed.']};
+let jobs=[],view='all',toastTimer=null,activeCategory='',categories=[];const selectedIds=new Set();
+const BRANDS=['Cipla','Sun Pharma','Lupin','Dr. Reddy’s','Mankind Pharma','Alkem','Zydus','Torrent Pharma','Glenmark','Aurobindo Pharma','Intas','Abbott','Bayer','Pfizer','Biocon','MSD','Novartis','AstraZeneca'];
+let supabaseClient=null,cloudUser=null,cloudChannel=null,cloudReady=false,remoteUpdate=false,cloudSaveTimer=null;
+const CLOUD_CONFIG_KEY='amcor_pune_supabase_config_v1';
+const SUPABASE_PROJECT_URL='https://scwvudekdfjrsqwpfblj.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY='sb_publishable_DRpXjv06JZs5HnjVketW-Q_8uVrXWAZ';
+const $=id=>document.getElementById(id);
+function today(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
+function load(){try{const x=JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]');jobs=Array.isArray(x)?x:[];jobs.forEach(j=>{delete j.brand;if(j.soNumber===undefined)j.soNumber=''})}catch(e){jobs=[];notify('Saved browser data could not be read. Starting with an empty register.')}}
+function persist(){try{jobs.forEach(j=>delete j.brand);const payload=JSON.stringify(jobs);localStorage.setItem(STORAGE_KEY,payload);const check=localStorage.getItem(STORAGE_KEY);if(check!==payload)throw new Error('Storage verification failed');if(cloudReady&&!remoteUpdate)scheduleCloudSave();return true}catch(e){notify('SAVE FAILED: this browser could not store the job. Check browser storage settings or try another browser.');return false}}
+function setCloudStatus(msg){const el=$('cloudStatus');if(el)el.textContent=msg}
+function readCloudConfig(){try{const saved=JSON.parse(localStorage.getItem(CLOUD_CONFIG_KEY)||'{}');return {...saved,url:SUPABASE_PROJECT_URL,key:SUPABASE_PUBLISHABLE_KEY}}catch(e){return {url:SUPABASE_PROJECT_URL,key:SUPABASE_PUBLISHABLE_KEY}}}
+function saveCloudConfig(url,key){localStorage.setItem(CLOUD_CONFIG_KEY,JSON.stringify({url,key}))}
+function makeSupabase(url,key){if(!window.supabase||!window.supabase.createClient)throw new Error('Supabase library did not load. Check your internet connection and reload.');return window.supabase.createClient(url,key)}
+async function connectAndSignIn(url,key,email,password){setCloudStatus('Connecting…');try{const client=makeSupabase(url,key);const {data,error}=await client.auth.signInWithPassword({email,password});if(error)throw error;supabaseClient=client;cloudUser=data.user;saveCloudConfig(url,key);await startCloudSync();$('cloudModal').classList.add('hidden');notify('Signed in. Cloud sync is active.')}catch(e){setCloudStatus('Connection/sign-in failed: '+(e.message||String(e)));}}
+async function startCloudSync(){if(!supabaseClient||!cloudUser)return;setCloudStatus('Signed in as '+cloudUser.email+'. Loading shared jobs…');const {data,error}=await supabaseClient.from('amcor_job_tracker_state').select('jobs').eq('id','main').maybeSingle();if(error){cloudReady=false;setCloudStatus('Signed in, but database setup failed: '+error.message+' — run supabase-setup.sql in Supabase SQL Editor.');return}if(data&&Array.isArray(data.jobs)){remoteUpdate=true;jobs=data.jobs;localStorage.setItem(STORAGE_KEY,JSON.stringify(jobs));remoteUpdate=false;render()}else{const {error:upErr}=await supabaseClient.from('amcor_job_tracker_state').upsert({id:'main',jobs:jobs,updated_at:new Date().toISOString()});if(upErr){setCloudStatus('Could not initialize shared jobs: '+upErr.message);return}}cloudReady=true;if(cloudChannel){await supabaseClient.removeChannel(cloudChannel);cloudChannel=null}cloudChannel=supabaseClient.channel('amcor-job-tracker-live').on('postgres_changes',{event:'*',schema:'public',table:'amcor_job_tracker_state',filter:'id=eq.main'},payload=>{if(!payload.new||!Array.isArray(payload.new.jobs))return;remoteUpdate=true;jobs=payload.new.jobs;try{localStorage.setItem(STORAGE_KEY,JSON.stringify(jobs))}catch(e){}remoteUpdate=false;render();setCloudStatus('Cloud sync active · signed in as '+cloudUser.email)}).subscribe(status=>{if(status==='SUBSCRIBED')setCloudStatus('Cloud sync active · signed in as '+cloudUser.email)});setCloudStatus('Cloud sync active · signed in as '+cloudUser.email);}
+async function saveCloudNow(){if(!cloudReady||!supabaseClient)return false;clearTimeout(cloudSaveTimer);setCloudStatus('Saving changes to cloud…');try{const {error}=await supabaseClient.from('amcor_job_tracker_state').upsert({id:'main',jobs:jobs,updated_at:new Date().toISOString()});if(error){setCloudStatus('Cloud save failed: '+error.message);notify('Saved on this browser only. Cloud save failed: '+error.message);return false}setCloudStatus('Cloud sync active · last saved '+new Date().toLocaleTimeString());return true}catch(e){setCloudStatus('Cloud save failed: '+(e.message||String(e)));notify('Saved on this browser only. Cloud save failed; check connection and Supabase permissions.');return false}}
+function scheduleCloudSave(){clearTimeout(cloudSaveTimer);cloudSaveTimer=setTimeout(()=>{saveCloudNow()},350)}
+async function restoreCloudSession(){const cfg=readCloudConfig();if(!cfg.url||!cfg.key)return;try{const client=makeSupabase(cfg.url,cfg.key);const {data}=await client.auth.getSession();if(data&&data.session){supabaseClient=client;cloudUser=data.session.user;await startCloudSync()}}catch(e){setCloudStatus('Cloud not connected: '+(e.message||String(e)))}}
+async function cloudSignOut(){if(supabaseClient){if(cloudChannel)await supabaseClient.removeChannel(cloudChannel);await supabaseClient.auth.signOut()}cloudReady=false;cloudUser=null;cloudChannel=null;supabaseClient=null;setCloudStatus('Signed out. Browser-local saving is active.');notify('Signed out of cloud sync.')}
+
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function num(v){const n=Number(v);return Number.isFinite(n)?n:0}
+function dispatchPending(j){return !j.dispatchDone}
+function completed(j){return !!j.dispatchDone}
+function pending(j){return !completed(j)}
+function fmtDate(s){if(!s)return '—';const p=s.split('-');return p.length===3?`${p[2]}-${p[1]}-${p[0]}`:s}
+function notify(msg){const t=$('toast');t.textContent=msg;t.classList.remove('hidden');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.add('hidden'),2600)}
+function selectedJobs(){const q=$('search').value.trim().toLowerCase(),from=$('fromDate').value,to=$('toDate').value;return jobs.filter(j=>{const hay=[j.customerName,j.productName,j.itemCode,j.soNumber,j.bookingDate,j.plannedDate,j.category].join(' ').toLowerCase();if(q&&!hay.includes(q))return false;if(from&&(!j.plannedDate||j.plannedDate<from))return false;if(to&&(!j.plannedDate||j.plannedDate>to))return false;if(activeCategory&&j.category!==activeCategory)return false;if(view==='pending'&&!pending(j))return false;if(view==='completed'&&!completed(j))return false;if(view==='dueToday'&&(!dispatchPending(j)||!j.plannedDate||j.plannedDate>today()||!j.slittingDone))return false;if(view==='slittingCompleted'&&!j.slittingDone)return false;return true}).sort((a,b)=>(a.plannedDate||'9999').localeCompare(b.plannedDate||'9999'))}
+function checkCell(j,key){const done=!!j[key];return `<button type="button" class="status-toggle ${done?'done':''}" data-progress-toggle="true" data-id="${esc(j.id)}" data-field="${key}" aria-pressed="${done}" aria-label="${esc(key)}: ${done?'Completed':'Pending'}. Click to change status">${done?'Completed':'Pending'}</button>`}
+function qtyCell(j,key){return `<input class="qty-input" type="number" min="0" step="any" value="${esc(j[key]??0)}" data-id="${esc(j.id)}" data-field="${key}" aria-label="${key}">`}
+function render(){renderCategories();const all=jobs.length,pend=jobs.filter(dispatchPending).length,done=jobs.filter(completed).length,from=$('fromDate').value,to=$('toDate').value;$('allCount').textContent=all;$('pendingCount').textContent=jobs.filter(pending).length;$('completedCount').textContent=done;$('dueCount').textContent=jobs.filter(j=>dispatchPending(j)&&j.plannedDate&&j.plannedDate<=today()&&j.slittingDone).length;$('slittingCount').textContent=jobs.filter(j=>j.slittingDone).length;$('totalStat').textContent=all;$('pendingStat').textContent=pend;$('doneStat').textContent=done;const pendingTillDate=jobs.filter(j=>dispatchPending(j)&&j.plannedDate&&j.plannedDate<=today());$('rangeStat').childNodes[0].textContent=pendingTillDate.length+' ';$('rangeSlittingReady').textContent=`(${pendingTillDate.filter(j=>j.slittingDone).length} Slitting Ready)`;$('pendingJobsStat').textContent=jobs.filter(j=>j.slittingDone).length;$('pageTitle').textContent=labels[view][0];$('tableTitle').textContent=view==='all'?'Job register':labels[view][0];$('tableDesc').textContent=labels[view][1]+' Quantities can be changed after saving.';document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===view));const rows=selectedJobs();$('resultCount').textContent=`${rows.length} job${rows.length===1?'':'s'}`;$('footerText').textContent=`Showing ${rows.length} of ${jobs.length} jobs`;$('empty').classList.toggle('hidden',rows.length!==0);$('tableWrap').classList.toggle('hidden',rows.length===0);$('jobsBody').innerHTML=rows.map(j=>`<tr><td><input type="checkbox" class="row-select" data-select-id="${esc(j.id)}" aria-label="Select job for ${esc(j.customerName)}" ${selectedIds.has(j.id)?'checked':''}></td><td>${fmtDate(j.bookingDate)}</td><td>${esc(j.soNumber||'')}</td><td class="customer" title="Double-click to view or edit full job details">${esc(j.customerName)}</td><td class="product-cell" title="Double-click to view or edit full job details">${esc(j.productName)}</td><td>${esc(j.itemCode)}</td><td>${esc(j.category||'')}</td><td>${esc(j.plannedQty)}</td><td>${fmtDate(j.plannedDate)}</td><td>${checkCell(j,'cylinderReady')}</td><td>${checkCell(j,'rmReady')}</td><td>${checkCell(j,'printDone')}</td><td>${checkCell(j,'lam1Done')}</td><td>${checkCell(j,'lam2Done')}</td><td>${checkCell(j,'slittingDone')}</td><td>${qtyCell(j,'slittingQty')}</td><td>${checkCell(j,'dispatchDone')}</td><td>${qtyCell(j,'dispatchQty')}</td><td>${fmtDate(j.actualDate)}</td><td><div class="actions"><button class="mini" data-action="edit" data-id="${esc(j.id)}">Edit</button><button class="mini delete" data-action="delete" data-id="${esc(j.id)}">Delete</button></div></td><td><input class="remark-input" type="text" maxlength="500" value="${esc(j.remark||'')}" data-id="${esc(j.id)}" data-field="remark" aria-label="Remark for ${esc(j.customerName)}" placeholder="Add remark…"></td></tr>`).join('');const visibleIds=rows.map(j=>j.id);const selectedVisible=visibleIds.filter(id=>selectedIds.has(id)).length;const allVisible=visibleIds.length>0&&selectedVisible===visibleIds.length;['selectAllVisible','selectAllHeader'].forEach(id=>{const el=$(id);if(el){el.checked=allVisible;el.indeterminate=selectedVisible>0&&!allVisible}});$('selectedCount').textContent=`${selectedIds.size} selected`;$('deleteSelectedBtn').disabled=selectedIds.size===0;$('deleteSelectedBtn').textContent=`Delete selected jobs (${selectedIds.size})`;}
+function openModal(j){$('jobForm').reset();$('jobId').value=j?.id||'';$('modalTitle').textContent=j?'Edit job':'Add new job';for(const f of fields){const el=$(f);if(!el)continue;if(el.type==='checkbox')el.checked=!!j?.[f];else el.value=j?.[f]??(f==='bookingDate'?today():'')} $('modalBg').classList.remove('hidden');$('customerName').focus()}
+function closeModal(){$('modalBg').classList.add('hidden')}
+$('addBtn').addEventListener('click',()=>openModal());$('closeModal').addEventListener('click',closeModal);$('cancelBtn').addEventListener('click',closeModal);$('modalBg').addEventListener('click',e=>{if(e.target===$('modalBg'))closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closePlannerQuick()}});
+$('jobForm').addEventListener('submit',async e=>{e.preventDefault();const submitBtn=$('jobForm').querySelector('button[type=submit]');if(submitBtn.disabled)return;const id=$('jobId').value||('job_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,7));const j={id};for(const f of fields){const el=$(f);j[f]=el.type==='checkbox'?el.checked:(el.type==='number'?num(el.value):el.value.trim())}if(!j.bookingDate||!j.customerName||!j.productName||!j.itemCode||!j.plannedDate){notify('Please complete all required planner fields.');return}const i=jobs.findIndex(x=>x.id===id);if(i>=0)jobs[i]=j;else jobs.push(j);if(!persist())return;render();submitBtn.disabled=true;submitBtn.textContent='Saving…';try{if(cloudReady){const cloudSaved=await saveCloudNow();closeModal();render();notify(cloudSaved?(i>=0?'Job updated and synced to cloud.':'Job saved and synced to cloud.'):(i>=0?'Job updated in this browser only.':'Job saved in this browser only. Cloud sync failed.'))}else{closeModal();render();notify(i>=0?'Job updated on this computer only. Connect cloud sync to share it across computers.':'Job saved on this computer only. Connect cloud sync to share it across computers.')}}finally{submitBtn.disabled=false;submitBtn.textContent='Save job'}});
+$('jobsBody').addEventListener('change',e=>{const box=e.target.closest('input.row-select[data-select-id]');if(!box)return;const id=box.dataset.selectId;if(box.checked)selectedIds.add(id);else selectedIds.delete(id);render()});
+$('jobsBody').addEventListener('change',e=>{const el=e.target;if(!el.dataset.id||!el.dataset.field)return;const j=jobs.find(x=>x.id===el.dataset.id);if(!j)return;const key=el.dataset.field;j[key]=el.type==='checkbox'?el.checked:(el.type==='number'?num(el.value):el.value.trim());if(key==='dispatchDone'&&j.dispatchDone&&!j.actualDate)j.actualDate=today();if(key==='dispatchDone'&&!j.dispatchDone)j.actualDate='';persist();render();notify(key==='slittingQty'?'Slitting quantity saved.':key==='dispatchQty'?'Dispatch quantity saved.':'Job progress updated.')});
+$('jobsBody').addEventListener('click',e=>{const b=e.target.closest('button[data-progress-toggle]');if(!b)return;const j=jobs.find(x=>x.id===b.dataset.id);if(!j)return;const key=b.dataset.field;if(j[key]){notify('This item is already Completed. To change it back to Pending, open Edit, untick the relevant option, and save.');return;}j[key]=true;if(key==='dispatchDone'&&!j.actualDate)j.actualDate=today();persist();render();notify(`${key==='cylinderReady'?'Cylinder readiness':key==='rmReady'?'RM readiness':key==='printDone'?'Printing':key==='lam1Done'?'Lamination pass 1':key==='lam2Done'?'Lamination pass 2':key==='slittingDone'?'Slitting':'Dispatch'} marked Completed.`)});
+$('jobsBody').addEventListener('change',e=>{const cb=e.target.closest('[data-select-id]');if(!cb)return;if(cb.checked)selectedIds.add(cb.dataset.selectId);else selectedIds.delete(cb.dataset.selectId);const rows=selectedJobs(),selectedVisible=rows.filter(j=>selectedIds.has(j.id)).length,allVisible=rows.length>0&&selectedVisible===rows.length;['selectAllVisible','selectAllHeader'].forEach(id=>{const el=$(id);if(el){el.checked=allVisible;el.indeterminate=selectedVisible>0&&!allVisible}});$('selectedCount').textContent=`${selectedIds.size} selected`;$('deleteSelectedBtn').disabled=selectedIds.size===0;$('deleteSelectedBtn').textContent=`Delete selected jobs (${selectedIds.size})`});
+ $('jobsBody').addEventListener('dblclick',e=>{const cell=e.target.closest('td.customer,td.product-cell');if(!cell)return;const tr=cell.closest('tr'),id=tr?.querySelector('[data-select-id]')?.dataset.selectId;const job=jobs.find(x=>x.id===id);if(job)openPlannerQuick(job)});
+ function openPlannerQuick(j){$('plannerQuickForm').reset();$('quickJobId').value=j.id;const map={quickBookingDate:'bookingDate',quickSoNumber:'soNumber',quickCustomerName:'customerName',quickCategory:'category',quickProductName:'productName',quickItemCode:'itemCode',quickPlannedQty:'plannedQty',quickPlannedDate:'plannedDate'};Object.entries(map).forEach(([id,key])=>$(id).value=j[key]??'');$('plannerQuickBg').classList.remove('hidden');$('quickCustomerName').focus()}
+ function closePlannerQuick(){$('plannerQuickBg').classList.add('hidden')}
+ $('plannerQuickClose').addEventListener('click',closePlannerQuick);$('plannerQuickCancel').addEventListener('click',closePlannerQuick);$('plannerQuickBg').addEventListener('click',e=>{if(e.target===$('plannerQuickBg'))closePlannerQuick()});
+ $('plannerQuickForm').addEventListener('submit',async e=>{e.preventDefault();const j=jobs.find(x=>x.id===$('quickJobId').value);if(!j)return;const map={bookingDate:'quickBookingDate',soNumber:'quickSoNumber',customerName:'quickCustomerName',category:'quickCategory',productName:'quickProductName',itemCode:'quickItemCode',plannedQty:'quickPlannedQty',plannedDate:'quickPlannedDate'};Object.entries(map).forEach(([key,id])=>j[key]=key==='plannedQty'?num($(id).value):$(id).value.trim());if(!j.bookingDate||!j.customerName||!j.productName||!j.itemCode||!j.plannedDate){notify('Please complete all required planner fields.');return}if(!persist())return;render();closePlannerQuick();if(cloudReady){const ok=await saveCloudNow();notify(ok?'Planner details updated and synced.':'Planner details saved locally; cloud sync failed.')}else notify('Planner details updated.')});
+ function setVisibleSelection(checked){selectedJobs().forEach(j=>checked?selectedIds.add(j.id):selectedIds.delete(j.id));render()}
+ ['selectAllVisible','selectAllHeader'].forEach(id=>$(id).addEventListener('change',e=>setVisibleSelection(e.target.checked)));
+ $('clearSelectionBtn').addEventListener('click',()=>{selectedIds.clear();render()});
+ $('deleteSelectedBtn').addEventListener('click',async()=>{const ids=[...selectedIds].filter(id=>jobs.some(j=>j.id===id));if(!ids.length)return;if(!confirm(`Delete ${ids.length} selected job(s)? This cannot be undone.`))return;const previous=jobs.slice();jobs=jobs.filter(j=>!ids.includes(j.id));ids.forEach(id=>selectedIds.delete(id));if(!persist()){jobs=previous;render();return}render();let synced=true;if(cloudReady)synced=await saveCloudNow();notify(`${ids.length} job(s) deleted${cloudReady?(synced?' and synced to cloud.':' locally; cloud sync failed.') :'.'}`)});
+ $('jobsBody').addEventListener('click',e=>{const b=e.target.closest('button[data-action]');if(!b)return;const j=jobs.find(x=>x.id===b.dataset.id);if(!j)return;if(b.dataset.action==='edit')openModal(j);if(b.dataset.action==='delete'&&confirm(`Delete job for ${j.customerName} — ${j.productName}? This cannot be undone.`)){jobs=jobs.filter(x=>x.id!==j.id);selectedIds.delete(j.id);persist();render();notify('Job deleted.')}});
+document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>{view=b.dataset.view;render()}));function renderCategories(){
+ const names=[...new Set(jobs.map(j=>String(j.category||'').trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b));
+ $('categoryOptions').innerHTML=names.map(x=>`<option value="${esc(x)}"></option>`).join('');
+ if(activeCategory&&!names.includes(activeCategory))activeCategory='';
+ $('categoryChips').innerHTML=`<button type="button" class="category-chip ${!activeCategory?'selected':''}" data-category="">All categories</button>`+names.map(x=>`<button type="button" class="category-chip ${activeCategory===x?'selected':''}" data-category="${esc(x)}">${esc(x)}</button>`).join('');
+}
+$('categoryChips').addEventListener('click',e=>{const b=e.target.closest('[data-category]');if(!b)return;activeCategory=b.dataset.category||'';render()});
+$('addCategoryBtn').style.display='none';
+$('search').addEventListener('input',render);$('fromDate').addEventListener('change',render);$('toDate').addEventListener('change',render);$('clearDates').addEventListener('click',()=>{$('fromDate').value='';$('toDate').value='';render()});
+$('cloudBtn').addEventListener('click',()=>{$('cloudModal').classList.remove('hidden');$('sbPassword').value='';if(cloudUser)setCloudStatus('Signed in as '+cloudUser.email+(cloudReady?' · cloud sync active':''));else{const cfg=readCloudConfig();setCloudStatus(cfg.url&&cfg.key?'Enter your employee email and password to sign in.':'Cloud setup is not configured on this browser yet. Ask the administrator to configure the Supabase connection.')}});$('cloudClose').addEventListener('click',()=>$('cloudModal').classList.add('hidden'));$('cloudModal').addEventListener('click',e=>{if(e.target===$('cloudModal'))$('cloudModal').classList.add('hidden')});$('cloudForm').addEventListener('submit',async e=>{e.preventDefault();const cfg=readCloudConfig(),url=(cfg.url||'').trim().replace(/\/$/,''),key=(cfg.key||'').trim(),email=$('sbEmail').value.trim(),password=$('sbPassword').value;if(!url||!key){setCloudStatus('Cloud connection is not configured. Ask the administrator to set it up first.');return}if(!email||!password)return;await connectAndSignIn(url,key,email,password)});$('cloudSignOut').addEventListener('click',cloudSignOut);
+
+// Bulk entry uses the same jobs array, local persistence, and existing cloud-sync pathway.
+let bulkRows=[];
+const bulkColumns=['Booking date','SO Number','Customer name','Product name','Item code','Job Category','Planned qty','Planned dispatch date'];
+ function parseBulkCSV(text,delimiter){const rows=[];let row=[],cell='',quoted=false;text=String(text).replace(/^\uFEFF/,'');for(let i=0;i<text.length;i++){const c=text[i];if(quoted){if(c==='"'&&text[i+1]==='"'){cell+='"';i++}else if(c==='"')quoted=false;else cell+=c}else if(c==='"')quoted=true;else if(c===delimiter){row.push(cell);cell=''}else if(c==='\n'){row.push(cell.replace(/\r$/,''));rows.push(row);row=[];cell=''}else cell+=c}row.push(cell.replace(/\r$/,''));rows.push(row);return rows.filter(r=>r.some(c=>String(c).trim()))}
+ function bulkDate(v){v=String(v??'').trim();if(!v)return '';if(/^\d{4,5}(?:\.0+)?$/.test(v)){const n=Number(v);if(n>20000&&n<100000){const d=new Date(Date.UTC(1899,11,30)+n*86400000);return d.toISOString().slice(0,10)}}let m=v.match(/^(\d{4})-(\d{1,2})-(\d{1,2})(?:T.*)?$/);if(m)return validBulkDate(+m[1],+m[2],+m[3]);m=v.match(/^(\d{1,2})[\/.\-](\d{1,2})[\/.\-](\d{4})$/);if(m)return validBulkDate(+m[3],+m[2],+m[1]);return ''}
+ function validBulkDate(y,m,d){const x=new Date(Date.UTC(y,m-1,d));return x.getUTCFullYear()===y&&x.getUTCMonth()===m-1&&x.getUTCDate()===d?`${y}-${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')}`:''}
+ function bulkCheck(){const raw=$('bulkText').value.trim();bulkRows=[];$('bulkSaveBtn').disabled=true;if(!raw){$('bulkFeedback').textContent='Paste Excel rows or upload a CSV.';$('bulkPreview').classList.add('hidden');return}const delimiter=raw.includes('\t')?'\t':',';const data=parseBulkCSV(raw,delimiter);if(data.length&&/booking\s*date/i.test(data[0][0]||''))data.shift();bulkRows=data.map((r,i)=>{const errors=[];let bookingDate,soNumber='',customerName,productName,itemCode,category='',q,plannedDate;if(r.length===6){[bookingDate,customerName,productName,itemCode,q,plannedDate]=r;bookingDate=bulkDate(bookingDate);plannedDate=bulkDate(plannedDate)}else if(r.length===8){[bookingDate,soNumber,customerName,productName,itemCode,category,q,plannedDate]=r;bookingDate=bulkDate(bookingDate);plannedDate=bulkDate(plannedDate)}else errors.push('Expected 8 columns (or legacy 6); found '+r.length);if(!bookingDate)errors.push('Invalid booking date');if(!String(customerName||'').trim())errors.push('Customer missing');if(!String(productName||'').trim())errors.push('Product missing');if(!String(itemCode||'').trim())errors.push('Item code missing');q=String(q??'').replace(/,/g,'').trim();if(!q||!Number.isFinite(Number(q))||Number(q)<0)errors.push('Invalid quantity');if(!plannedDate)errors.push('Invalid dispatch date');const rawDisplay=r.length===6?[r[0],'',r[1],r[2],r[3],'',r[4],r[5]]:r;return {line:i+1,raw:rawDisplay,errors,job:{bookingDate,soNumber:String(soNumber||'').trim(),customerName:String(customerName||'').trim(),productName:String(productName||'').trim(),itemCode:String(itemCode||'').trim(),category:String(category||'').trim(),plannedQty:Number(q),plannedDate}}});const good=bulkRows.filter(r=>!r.errors.length).length,bad=bulkRows.length-good;$('bulkFeedback').textContent=`${good} valid row(s); ${bad} invalid row(s). ${bad?'Correct errors before importing.':'Review the preview, then import.'}`;$('bulkSaveBtn').disabled=!good||!!bad;$('bulkSaveBtn').textContent=`Import ${good} job${good===1?'':'s'}`;$('bulkPreview').innerHTML='<table><thead><tr><th>Row</th>'+bulkColumns.map(x=>'<th>'+x+'</th>').join('')+'<th>Check</th></tr></thead><tbody>'+bulkRows.map(r=>'<tr><td>'+r.line+'</td>'+Array.from({length:8},(_,i)=>'<td>'+esc(r.raw[i]??'')+'</td>').join('')+'<td class="'+(r.errors.length?'bulk-error':'bulk-good')+'">'+(r.errors.length?esc(r.errors.join('; ')):'Ready')+'</td></tr>').join('')+'</tbody></table>';$('bulkPreview').classList.remove('hidden')}
+ $('bulkBtn').addEventListener('click',()=>{$('bulkModal').classList.remove('hidden');$('bulkText').focus()});
+$('bulkClose').addEventListener('click',()=>$('bulkModal').classList.add('hidden'));
+$('bulkModal').addEventListener('click',e=>{if(e.target===$('bulkModal'))$('bulkModal').classList.add('hidden')});
+$('bulkText').addEventListener('input',()=>{bulkRows=[];$('bulkSaveBtn').disabled=true;$('bulkFeedback').textContent='Click Preview rows to validate the new data.';$('bulkPreview').classList.add('hidden')});
+$('bulkPreviewBtn').addEventListener('click',bulkCheck);
+$('bulkFile').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;$('bulkText').value=await file.text();bulkCheck();e.target.value=''});
+$('bulkSaveBtn').addEventListener('click',async()=>{
+ if(!bulkRows.length||bulkRows.some(r=>r.errors.length))return;
+ const btn=$('bulkSaveBtn');btn.disabled=true;const previous=jobs.slice();
+ const imported=bulkRows.map((r,i)=>({id:'job_'+Date.now().toString(36)+'_'+i+'_'+Math.random().toString(36).slice(2,7),...Object.fromEntries(fields.map(f=>[f,['plannedQty','slittingQty','dispatchQty'].includes(f)?0:['cylinderReady','rmReady','printDone','lam1Done','lam2Done','slittingDone','dispatchDone'].includes(f)?false:''])),...r.job}));
+ jobs.push(...imported);
+ if(!persist()){jobs=previous;btn.disabled=false;return}
+ render();
+ let cloudSaved=true;if(cloudReady)cloudSaved=await saveCloudNow();
+ $('bulkModal').classList.add('hidden');$('bulkText').value='';bulkRows=[];$('bulkPreview').classList.add('hidden');
+ notify(`${imported.length} jobs imported${cloudReady?(cloudSaved?' and synced to cloud.':' locally; cloud sync failed.'):' on this browser. Connect cloud sync to share.'}`);
+});
+
+load();render();try{const probe='__amcor_storage_test__';localStorage.setItem(probe,'1');localStorage.removeItem(probe)}catch(e){notify('Browser storage is blocked. Jobs cannot be saved in this browser; allow site storage and reload.')}restoreCloudSession();
+})();
+</script></body></html>
